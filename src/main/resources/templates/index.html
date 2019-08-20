@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <title>测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+</head>
+<body>
+
+<div class="wrapper-page">
+    <button onclick="getSignUrl()" type="button">
+        生成url
+    </button>
+    <div id="div1">1</div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script language="JavaScript">
+    function getSignUrl() {
+        var urlString = "/generatesignurl";
+        $.ajax({
+            url: urlString,
+            success: function (result) {
+                if (result.success) {
+                    $("#div1").html('<a href="' + result.url + '" target="_blank">' + result.url + '</a>');
+
+                } else {
+                    alert("失败 " + result.success)
+                }
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+    }
+</script>
+</html>
